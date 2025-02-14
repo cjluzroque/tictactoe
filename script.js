@@ -10,44 +10,46 @@
 // x, n, n, n, x, n, n, n, x 
 // n, n, x, n, x, n, x, n, n 
 
-const testModule = (function() {
-    let test = "This is firing"; 
-
-    const sayTest = () => {
-        return console.log(test);
-    };
-
-    const changeTest = (value) => {
-        return (test = value);
-    }
-
-    return {
-        sayTest, changeTest
-    }
-})();
-
-const gameBoard = (function() {
-    let board = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+const Gameboard = (function() {
+    let board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]; 
 
     const showBoard = () => {
         return console.log(board);
     };
 
-    const changeBoard = (value, player) => {
-        if (value > 9) {
+    const changeBoard = (position, player) => {
+        if (position > 9) {
             return console.log("INVALID INPUT");
         }
-        if (board[value - 1] != 0) {
+        if (board[position - 1] != "_") {
             return console.log("TAKEN"); 
         }
-        return (board[value-1] = player);
+        board[position-1] = player;
+        showBoard();
+        return;
     };
 
     const resetBoard = () => {
-        return (board = [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
     };
 
     return {
         showBoard, changeBoard, resetBoard
     };
 })();
+
+function newPlayer (name) {
+    const player = name;
+
+    const play = (position) => {
+        return Gameboard.changeBoard(position, player);
+    };
+
+    return {
+        play
+    };
+}
+
+const p1 = newPlayer("O");
+const p2 = newPlayer("X");
+p1.play(2);
