@@ -1,7 +1,5 @@
 /* Script for Tic-Tac-Toe */
 
-
-
 const Gameboard = (function() {
     let board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]; 
 
@@ -39,117 +37,104 @@ const Gameboard = (function() {
 })();
 
 const Winner = (function() {
-    // Winning Combinations 
-    // 0, 1, 2 
-    // 3, 4, 5 
-    // 6, 7, 8 
-    // x, x, x, n, n, n, n, n, n 
-    // n, n, n, x, x, x, n, n, n 
-    // n, n, n, n, n, n, x, x, x 
-    // x, n, n, x, n, n, x, n, n 
-    // n, x, n, n, x, n, n, x, n 
-    // n, n, x, n, n, x, n, n, x 
-    // x, n, n, n, x, n, n, n, x 
-    // n, n, x, n, x, n, x, n, n 
-
     const checkBoard = (lastMove) => {
-        board = Gameboard.returnBoard();
+        let x = Gameboard.returnBoard();
         switch(lastMove) {
             case 0:
-                if ((board[0] == board[1]) && (board[0] == board[2])) {
+                if ((x[0] == x[1]) && (x[0] == x[2])) {
                     return true;
                 }
-                if ((board[0] == board[3]) && (board[0] == board[6])) {
+                if ((x[0] == x[3]) && (x[0] == x[6])) {
                     return true;
                 }
-                if ((board[0] == board[4]) && (board[0] == board[8])) {
+                if ((x[0] == x[4]) && (x[0] == x[8])) {
                     return true;
                 }
                 return false;
                 break;
             case 1:
-                if ((board[1] == board[0]) && (board[1] == board[2])) {
+                if ((x[1] == x[0]) && (x[1] == x[2])) {
                     return true;
                 }
-                if ((board[1] == board[4]) && (board[1] == board[7])) {
+                if ((x[1] == x[4]) && (x[1] == x[7])) {
                     return true;
                 }
                 return false;
                 break;
             case 2:
-                if ((board[2] == board[0]) && (board[2] == board[1])) {
+                if ((x[2] == x[0]) && (x[2] == x[1])) {
                     return true;
                 }
-                if ((board[2] == board[5]) && (board[2] == board[8])) {
+                if ((x[2] == x[5]) && (x[2] == x[8])) {
                     return true;
                 }
-                if ((board[2] == board[4]) && (board[2] == board[6])) {
+                if ((x[2] == x[4]) && (x[2] == x[6])) {
                     return true;
                 }
                 return false;
                 break;
             case 3:
-                if ((board[3] == board[0]) && (board[3] == board[6])) {
+                if ((x[3] == x[0]) && (x[3] == x[6])) {
                     return true;
                 }
-                if ((board[3] == board[4]) && (board[3] == board[5])) {
+                if ((x[3] == x[4]) && (x[3] == x[5])) {
                     return true;
                 }
                 return false;
                 break;
             case 4:
-                if ((board[4] == board[0]) && (board[4] == board[8])) {
+                if ((x[4] == x[0]) && (x[4] == x[8])) {
                     return true;
                 }
-                if ((board[4] == board[1]) && (board[4] == board[7])) {
+                if ((x[4] == x[1]) && (x[4] == x[7])) {
                     return true;
                 }
-                if ((board[4] == board[2]) && (board[4] == board[6])) {
+                if ((x[4] == x[2]) && (x[4] == x[6])) {
                     return true;
                 }
-                if ((board[4] == board[3]) && (board[4] == board[5])) {
+                if ((x[4] == x[3]) && (x[4] == x[5])) {
                     return true;
                 }
                 else return false;
                 break;
             case 5:
-                if ((board[5] == board[2]) && (board[5] == board[8])) {
+                if ((x[5] == x[2]) && (x[5] == x[8])) {
                     return true;
                 }
-                if ((board[5] == board[3]) && (board[5] == board[4])) {
+                if ((x[5] == x[3]) && (x[5] == x[4])) {
                     return true;
                 }
                 return false;
                 break;
             case 6:
-                if ((board[6] == board[0]) && (board[6] == board[3])) {
+                if ((x[6] == x[0]) && (x[6] == x[3])) {
                     return true;
                 }
-                if ((board[6] == board[2]) && (board[6] == board[4])) {
+                if ((x[6] == x[2]) && (x[6] == x[4])) {
                     return true;
                 }
-                if ((board[6] == board[7]) && (board[6] == board[8])) {
+                if ((x[6] == x[7]) && (x[6] == x[8])) {
                     return true;
                 }
                 return false;
                 break;
             case 7:
-                if ((board[7] == board[1]) && (board[7] == board[4])) {
+                if ((x[7] == x[1]) && (x[7] == x[4])) {
                     return true;
                 }
-                if ((board[7] == board[6]) && (board[7] == board[8])) {
+                if ((x[7] == x[6]) && (x[7] == x[8])) {
                     return true;
                 }
                 return false;
                 break;
             case 8:
-                if ((board[8] == board[2]) && (board[8] == board[5])) {
+                if ((x[8] == x[2]) && (x[8] == x[5])) {
                     return true;
                 }
-                if ((board[8] == board[0]) && (board[8] == board[4])) {
+                if ((x[8] == x[0]) && (x[8] == x[4])) {
                     return true;
                 }
-                if ((board[8] == board[6]) && (board[8] == board[7])) {
+                if ((x[8] == x[6]) && (x[8] == x[7])) {
                     return true;
                 }
                 return false;
