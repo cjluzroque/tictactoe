@@ -24,17 +24,26 @@ const Gameboard = (function() {
             console.log(board[position - 1] + " wins!");
             game = false;
             resetBoard();
+            return;
+        }
+        if (boardSpace() == false) {
+            console.log("DRAW!");
+            game = false;
+            resetBoard();
         }
         return;
     };
 
+    const boardSpace = () => {
+        return(board.includes('_'))
+    }
+
     const resetBoard = () => {
-        spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
     };
 
     return {
-        returnBoard, showBoard, changeBoard, resetBoard
+        returnBoard, showBoard, changeBoard, boardSpace, resetBoard
     };
 })();
 
@@ -170,23 +179,21 @@ function newPlayer (name) {
 const p1 = newPlayer("O");
 const p2 = newPlayer("X");
 
+
 function popRandom(arr) {
     if (arr.length === 0) {
       return undefined;
     }
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr.splice(randomIndex, 1)[0];
-  }
-  
-  // Example usage:
-  let game = true;
-
-  const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  while (spaces) {
-    if (game) {
+}
+let game = true;
+const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+while (game) {
+    if (Gameboard.boardSpace()) {
         p1.play(popRandom(spaces));
-        p2.play(popRandom(spaces));
-    } else {
-        continue;
     }
-  }
+    if (Gameboard.boardSpace()) {
+        p2.play(popRandom(spaces));
+    }
+}
