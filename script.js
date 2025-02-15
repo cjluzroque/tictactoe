@@ -22,12 +22,14 @@ const Gameboard = (function() {
         showBoard();
         if (Winner.checkBoard(position - 1)) {
             console.log(board[position - 1] + " wins!");
+            game = false;
             resetBoard();
         }
         return;
     };
 
     const resetBoard = () => {
+        spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
     };
 
@@ -167,10 +169,24 @@ function newPlayer (name) {
 
 const p1 = newPlayer("O");
 const p2 = newPlayer("X");
-p1.play(4);
-p2.play(8);
-p1.play(5);
-p2.play(3);
-p1.play(1);
-p2.play(2);
-p1.play(6);
+
+function popRandom(arr) {
+    if (arr.length === 0) {
+      return undefined;
+    }
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr.splice(randomIndex, 1)[0];
+  }
+  
+  // Example usage:
+  let game = true;
+
+  const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  while (spaces) {
+    if (game) {
+        p1.play(popRandom(spaces));
+        p2.play(popRandom(spaces));
+    } else {
+        continue;
+    }
+  }
