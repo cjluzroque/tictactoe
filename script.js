@@ -180,20 +180,29 @@ const p1 = newPlayer("O");
 const p2 = newPlayer("X");
 
 
-function popRandom(arr) {
-    if (arr.length === 0) {
-      return undefined;
-    }
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    return arr.splice(randomIndex, 1)[0];
-}
+
+
+
 let game = true;
-const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-while (game) {
-    if (Gameboard.boardSpace()) {
-        p1.play(popRandom(spaces));
+function gameStart() {
+
+    function popRandom(arr) {
+        if (arr.length === 0) {
+          return undefined;
+        }
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr.splice(randomIndex, 1)[0];
     }
-    if (Gameboard.boardSpace()) {
-        p2.play(popRandom(spaces));
+    
+    game = true;
+    const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    while (game) {
+        if (Gameboard.boardSpace()) {
+            p1.play(popRandom(spaces));
+        }
+        if (Gameboard.boardSpace() && game) {
+            p2.play(popRandom(spaces));
+        }
     }
+    return;
 }
