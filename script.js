@@ -161,7 +161,7 @@ const Winner = (function() {
 const renderBoard = (function() {
 
     const board = document.querySelector('#container');
-    board.classList.add("board");
+    board.classList.add("gameboard");
 
     const createBoard = () => {
 
@@ -176,10 +176,13 @@ const renderBoard = (function() {
             // Append to grid 
             board.appendChild(space);
         }
+        return;
     }
 
-    const updateBoard = () => {
-
+    const updateBoard = (position) => {
+        const space = document.querySelector('.space'+position);
+        space.classList.add("changedspace");
+        return;
     }
 
     const resetBoard = () => {
