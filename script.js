@@ -186,8 +186,12 @@ const renderBoard = (function() {
     }
 
     const resetBoard = () => {
-
+        while (board.firstChild) {
+            board.removeChild(board.lastChild);
+        }
+        return;
     }
+
     return {
         createBoard, updateBoard, resetBoard
     }
