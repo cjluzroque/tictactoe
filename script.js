@@ -197,7 +197,9 @@ function newPlayer (name) {
     const player = name;
 
     const play = (position) => {
-        return Gameboard.changeBoard(position, player);
+        Gameboard.changeBoard(position, player);
+        renderBoard.updateBoard(position-1);
+        return;
     };
 
     return {
