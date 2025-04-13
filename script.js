@@ -4,12 +4,9 @@ const Gameboard = (function() {
     let board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]; 
 
     const returnBoard = () => {
+        console.log(board);
         return(board);
     }
-
-    const showBoard = () => {
-        return console.log(board);
-    };
 
     const changeBoard = (position, player) => {
         if (position > 9) {
@@ -19,7 +16,7 @@ const Gameboard = (function() {
             return console.log("TAKEN"); 
         }
         board[position-1] = player;
-        showBoard();
+        returnBoard();
         if (Winner.checkBoard(position - 1)) {
             console.log(board[position - 1] + " wins!");
             game = false;
@@ -43,7 +40,7 @@ const Gameboard = (function() {
     };
 
     return {
-        returnBoard, showBoard, changeBoard, boardSpace, resetBoard
+        returnBoard, changeBoard, boardSpace, resetBoard
     };
 })();
 
@@ -160,6 +157,39 @@ const Winner = (function() {
     };
 })();
 
+// UI Handling
+const renderBoard = (function() {
+
+    const board = document.querySelector('#container');
+    board.classList.add("board");
+
+    const createBoard = () => {
+
+        // GRID CREATION
+        // Create Row 
+        for (i = 0; i < 9; i++) {
+            // Make a div to append each box to be a row 
+            const space = document.createElement("div");
+            space.classList.add("space");
+            space.classList.add("space"+i);
+
+            // Append to grid 
+            board.appendChild(space);
+        }
+    }
+
+    const updateBoard = () => {
+
+    }
+
+    const resetBoard = () => {
+
+    }
+    return {
+        createBoard, updateBoard, resetBoard
+    }
+})();
+
 function newPlayer (name) {
     const player = name;
 
@@ -176,15 +206,17 @@ function newPlayer (name) {
 // 3, 4, 5 
 // 6, 7, 8 
 
-const p1 = newPlayer("O");
-const p2 = newPlayer("X");
 
 
 
 
 
+// Testing game 
 let game = true;
 function gameStart() {
+
+    const p1 = newPlayer("O");
+    const p2 = newPlayer("X");
 
     function popRandom(arr) {
         if (arr.length === 0) {
