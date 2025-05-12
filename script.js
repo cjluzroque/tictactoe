@@ -179,13 +179,6 @@ const renderBoard = (function() {
             board.appendChild(space);
         }
 
-        //This function can act when a box is clicked
-        const targets = document.querySelectorAll('.space');
-        targets.forEach(target => {
-            target.addEventListener("click", function () {
-                console.log("test");
-            });
-        });
         return;
     }
 
@@ -210,7 +203,13 @@ const renderBoard = (function() {
 function newPlayer (name) {
     const player = name;
 
-
+    //This function can act when a box is clicked
+    const targets = document.querySelectorAll('.space');
+    targets.forEach(target => {
+        target.addEventListener("click", function () {
+            console.log("test " + player);
+        });
+    });
 
     const play = (position) => {
         Gameboard.changeBoard(position, player);
