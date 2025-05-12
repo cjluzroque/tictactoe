@@ -163,6 +163,8 @@ const renderBoard = (function() {
     const board = document.querySelector('#container');
     board.classList.add("gameboard");
 
+    
+
     const createBoard = () => {
 
         // GRID CREATION
@@ -176,6 +178,14 @@ const renderBoard = (function() {
             // Append to grid 
             board.appendChild(space);
         }
+
+        //This function can act when a box is clicked
+        const targets = document.querySelectorAll('.space');
+        targets.forEach(target => {
+            target.addEventListener("click", function () {
+                console.log("test");
+            });
+        });
         return;
     }
 
@@ -199,6 +209,8 @@ const renderBoard = (function() {
 
 function newPlayer (name) {
     const player = name;
+
+
 
     const play = (position) => {
         Gameboard.changeBoard(position, player);
