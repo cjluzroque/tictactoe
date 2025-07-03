@@ -3,6 +3,11 @@
 const Gameboard = (function() {
     let board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]; 
 
+    const createBoard = () => {
+        renderBoard.createBoard();
+        return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
+    };
+
     const returnBoard = () => {
         console.log(board);
         return(board);
@@ -22,13 +27,13 @@ const Gameboard = (function() {
         if (Winner.checkBoard(position - 1)) {
             console.log(board[position - 1] + " wins!");
             game = false;
-            resetBoard();
+            //resetBoard();
             return;
         }
         if (boardSpace() == false) {
             console.log("DRAW!");
             game = false;
-            resetBoard();
+            //resetBoard();
         }
         return;
     };
@@ -42,13 +47,8 @@ const Gameboard = (function() {
         return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
     };
 
-    const createBoard = () => {
-        renderBoard.createBoard();
-        return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
-    };
-
     return {
-        returnBoard, changeBoard, boardSpace, resetBoard, createBoard
+        createBoard, returnBoard, changeBoard, boardSpace, resetBoard, 
     };
 })();
 
@@ -176,7 +176,7 @@ const renderBoard = (function() {
 
         // GRID CREATION
         // Create Row 
-        for (i = 0; i < 9; i++) {
+        for (let i = 0; i < 9; i++) {
             // Make a div to append each box to be a row 
             const space = document.createElement("div");
             space.classList.add("space");
