@@ -15,8 +15,10 @@ const Gameboard = (function() {
         if (board[position - 1] != "_") {
             return console.log("TAKEN"); 
         }
+        console.log("Playing " + player + " to position " + (position - 1));
         board[position-1] = player;
-        returnBoard();
+        renderBoard.updateBoard((position - 1), player);
+        //returnBoard();
         if (Winner.checkBoard(position - 1)) {
             console.log(board[position - 1] + " wins!");
             game = false;
@@ -36,11 +38,17 @@ const Gameboard = (function() {
     }
 
     const resetBoard = () => {
+        renderBoard.resetBoard();
+        return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
+    };
+
+    const createBoard = () => {
+        renderBoard.createBoard();
         return (board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]);
     };
 
     return {
-        returnBoard, changeBoard, boardSpace, resetBoard
+        returnBoard, changeBoard, boardSpace, resetBoard, createBoard
     };
 })();
 
@@ -163,9 +171,8 @@ const renderBoard = (function() {
     const board = document.querySelector('#container');
     board.classList.add("gameboard");
 
-    
-
     const createBoard = () => {
+        
 
         // GRID CREATION
         // Create Row 
@@ -178,13 +185,14 @@ const renderBoard = (function() {
             // Append to grid 
             board.appendChild(space);
         }
-
         return;
     }
 
-    const updateBoard = (position) => {
+    const updateBoard = (position, player) => {
         const space = document.querySelector('.space'+position);
-        space.classList.add("changedspace");
+        //space.classList.add("changedspace");
+        if (player == "X") space.classList.add("changedspacex");
+        if (player == "O") space.classList.add("changedspaceo");
         return;
     }
 
@@ -201,6 +209,7 @@ const renderBoard = (function() {
 })();
 
 function newPlayer (name) {
+    
     const player = name;
 
     //This function can act when a box is clicked
@@ -213,7 +222,6 @@ function newPlayer (name) {
 
     const play = (position) => {
         Gameboard.changeBoard(position, player);
-        renderBoard.updateBoard(position-1);
         return;
     };
 
@@ -245,7 +253,7 @@ function gameStart() {
         const randomIndex = Math.floor(Math.random() * arr.length);
         return arr.splice(randomIndex, 1)[0];
     }
-    
+    Gameboard.createBoard();
     game = true;
     const spaces = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     while (game) {

@@ -15,3 +15,13 @@
     width: 100%;
     border: solid black;
 }
+
+.changedspacex {
+    background-image: url('pieces/tictactoe-x.png');
+    background-size: 100%;
+}
+
+.changedspaceo {
+    background-image: url('pieces/tictactoe-o.png');
+    background-size: 100%;
+}
